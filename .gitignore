@@ -1,0 +1,27 @@
+# Python bytecode and tool caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Local virtual environments and secrets
+env/
+.venv/
+venv/
+.env
+
+# Generated research artefacts (recreate with run_pipeline.py)
+outputs/*
+!outputs/.gitkeep
+visualizations/*
+!visualizations/.gitkeep
+
+# Keep raw source datasets under version control by default; ignore common exports
+datasets/*.zip
+datasets/*.xlsx
+
+# Editor/OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
