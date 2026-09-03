@@ -9,8 +9,6 @@ QETI is a research prototype for early market-instability warning. It is not a r
 - Node.js 18 or newer and npm
 - Internet access when refreshing market data with `dataset.py`
 
-The commands below use the Windows virtual environment path. On macOS/Linux, replace `env\\Scripts\\python.exe` with `env/bin/python` and `npm.cmd` with `npm`.
-
 ## Complete setup
 
 From the repository root:
@@ -26,8 +24,8 @@ python -m pip install -r requirements.txt
 Install the frontend dependencies:
 
 ```powershell
-Push-Location frontend
-npm.cmd install
+cd frontend
+npm install
 Pop-Location
 ```
 
@@ -35,8 +33,8 @@ Run the lightweight checks:
 
 ```powershell
 python -m py_compile dataset.py main.py src\\*.py
-Push-Location frontend
-npm.cmd run build
+cd frontend
+npm run build
 Pop-Location
 ```
 
@@ -76,8 +74,8 @@ The crash label is `1` when the market falls at least 5% within the next 10 trad
 Build the frontend, then start the FastAPI server:
 
 ```powershell
-Push-Location frontend
-npm.cmd run build
+cd frontend
+npm run build
 Pop-Location
 env\\Scripts\\python.exe -m uvicorn backend.app:app --host 127.0.0.1 --port 8000
 ```
@@ -87,8 +85,8 @@ Open [http://127.0.0.1:8000](http://127.0.0.1:8000). The backend serves `fronten
 For frontend development, keep the API running in one terminal and use another:
 
 ```powershell
-Push-Location frontend
-npm.cmd run dev
+cd frontend
+npm run dev
 Pop-Location
 ```
 
