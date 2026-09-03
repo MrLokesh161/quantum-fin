@@ -2,7 +2,8 @@ import yfinance as yf
 import pandas as pd
 
 START_DATE = "1990-01-01"
-END_DATE = "2025-12-31"
+# yfinance treats `end` as exclusive; tomorrow includes today's completed bar.
+END_DATE = (pd.Timestamp.today().normalize() + pd.Timedelta(days=1)).strftime("%Y-%m-%d")
 
 # -----------------------------
 # Stock Market Indices

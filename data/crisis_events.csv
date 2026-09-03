@@ -1,0 +1,6 @@
+event_name,event_type,start_date,peak_date,end_date,description
+2008 Global Financial Crisis,market crash,2008-09-01,2008-09-15,2009-03-09,Global equity-market stress period.
+COVID-19 Market Crash,market crash,2020-02-19,2020-03-16,2020-03-23,Rapid pandemic-related equity selloff.
+Terra-Luna Collapse,crypto collapse,2022-05-01,2022-05-12,2022-05-31,Crypto-market stress event; not equivalent to an equity crash.
+FTX Collapse,crypto institutional failure,2022-11-01,2022-11-11,2022-11-30,Crypto institutional failure; not assumed causal for equity markets.
+Silicon Valley Bank Failure,institutional failure,2023-03-01,2023-03-10,2023-03-31,Institutional banking stress event.

@@ -10,11 +10,23 @@ env/
 venv/
 .env
 
-# Generated research artefacts (recreate with run_pipeline.py)
+# Generated research artefacts (recreate with main.py)
 outputs/*
 !outputs/.gitkeep
 visualizations/*
 !visualizations/.gitkeep
+
+# Local data downloads and temporary run files
+data/raw/
+*.log
+
+# Python tooling and local configuration
+.python-version
+.coverage
+htmlcov/
+
+# Jupyter runtime files
+.ipynb_checkpoints/
 
 # Keep raw source datasets under version control by default; ignore common exports
 datasets/*.zip
@@ -25,3 +37,7 @@ datasets/*.xlsx
 .idea/
 .DS_Store
 Thumbs.db
+
+# React/Vite dependencies and build output
+frontend/node_modules/
+frontend/dist/

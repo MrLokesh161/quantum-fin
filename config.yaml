@@ -1,0 +1,18 @@
+data:
+  dataset_dir: data/raw
+  primary_dataset: null # Null = automatically select the first market CSV found.
+  date_column: Date
+  close_column: Close
+splits: {train: 0.70, validation: 0.15, test: 0.15}
+features: {window_size: 20, horizon_days: 10, crash_threshold: -0.05, warning_threshold: -0.03, tda_feature_mode: reduced}
+models:
+  random_seed: 42
+  enable_tda: true
+  tda_stride: 20 # Compute PH every 20 overlapping windows; forward-fill topological state.
+  fast_mode: true
+  enable_xgboost: true
+  enable_lstm: true
+  rf: {n_estimators: 300, max_depth: 8, min_samples_leaf: 3}
+risk_thresholds: [0.25, 0.50, 0.75] # Prototype thresholds; not scientifically validated.
+risk_weights: {probability: 0.35, volatility: 0.20, drawdown: 0.20, persistence_entropy: 0.15, topology: 0.10}
+outputs: {root: outputs, figures: outputs/figures, metrics: outputs/metrics, predictions: outputs/predictions, reports: outputs/reports, models: outputs/models}
