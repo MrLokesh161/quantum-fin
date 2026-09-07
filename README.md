@@ -9,34 +9,40 @@ QETI is a research prototype for early market-instability warning. It is not a r
 - Node.js 18 or newer and npm
 - Internet access when refreshing market data with `dataset.py`
 
-## Complete setup
+## One-command setup for clients
 
-From the repository root:
+From the repository root, run PowerShell as a normal user:
 
 ```powershell
-py -3 -m venv env
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
-.\\env\\Scripts\\Activate.ps1
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
+.\\setup.ps1
 ```
 
-Install the frontend dependencies:
+`setup.ps1` checks for Python and Node.js, creates the `env` virtual environment, installs all Python dependencies, and installs the frontend dependencies. Run it once, or again after dependencies change.
+
+Then run the complete project:
 
 ```powershell
-cd frontend
-npm install
-Pop-Location
+.\\run_project.ps1
 ```
 
-Run the lightweight checks:
+`run_project.ps1` automatically downloads the latest completed market data, trains the models, regenerates reports and predictions, builds the React frontend, and starts the FastAPI server.
+
+Open [http://127.0.0.1:8000](http://127.0.0.1:8000) when the terminal says the server has started. Keep that PowerShell window open and press `Ctrl+C` to stop the server.
+
+### Requirements before running the scripts
+
+- Python 3.10+ available as `py` or `python`
+- Node.js 18+ available as `node` and `npm.cmd`
+- Internet access for Yahoo Finance data refresh
+
+If PowerShell blocks scripts, run this once in the current terminal:
 
 ```powershell
-python -m py_compile dataset.py main.py src\\*.py
-cd frontend
-npm run build
-Pop-Location
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
 ```
+
+The scripts are safe to rerun. Each run refreshes the input data and recreates the generated research outputs.
 
 ## Refresh daily market data
 
