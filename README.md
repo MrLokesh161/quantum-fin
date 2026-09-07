@@ -9,7 +9,7 @@ QETI is a research prototype for early market-instability warning. It is not a r
 - Node.js 18 or newer and npm
 - Internet access when refreshing market data with `dataset.py`
 
-## One-command setup for clients
+## One-command setup
 
 From the repository root, run PowerShell as a normal user:
 
