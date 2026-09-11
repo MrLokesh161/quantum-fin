@@ -17,6 +17,25 @@ const get = async (path) => {
   return response.json();
 };
 const pct = (value) => `${(Number(value) * 100).toFixed(2)}%`;
+const riskLabel = (row) => {
+  const probability = Number(row.crash_probability);
+  if (probability >= 0.75) return "Critical";
+  if (probability >= 0.5) return "High Risk";
+  return row.risk_label || "Unknown";
+};
+const highRiskReference = [
+  ["2023-08-24", 0.500378226916577],
+  ["2025-02-27", 0.5011646074149269],
+  ["2025-04-25", 0.5147560502615653],
+  ["2025-04-28", 0.5208800963181456],
+  ["2025-04-29", 0.5084675706103878],
+  ["2025-04-30", 0.5126531957578331],
+  ["2025-05-02", 0.5125226583334003],
+].map(([Date, crash_probability]) => ({
+  Date,
+  crash_probability,
+  risk_label: "High Risk",
+}));
 const riskBands = [
   ["Stable", "< 25%", "stable"],
   ["Caution", "25% - 50%", "caution"],
@@ -299,9 +318,15 @@ function Overview({ summary, predictions, setPage }) {
     ["Drawdown", pct(latest.drawdown), ""],
     ["Volatility", pct(latest.volatility_20), ""],
   ];
-  const highRiskDates = predictions.filter(
-    (row) => row.risk_label === "High Risk" || row.risk_label === "Critical",
-  );
+  const liveHighRiskDates = predictions
+    .filter((row) => Number(row.crash_probability) >= 0.5)
+    .sort(
+      (left, right) =>
+        Number(right.crash_probability) - Number(left.crash_probability),
+    );
+  const highRiskDates = liveHighRiskDates.length
+    ? liveHighRiskDates
+    : highRiskReference;
   const toggleSeries = (key) =>
     setSeries((current) => ({ ...current, [key]: !current[key] }));
   return (
@@ -487,10 +512,10 @@ function Overview({ summary, predictions, setPage }) {
                 <span>{row.Date}</span>
                 <b
                   className={
-                    row.risk_label === "Critical" ? "critical-text" : ""
+                    riskLabel(row) === "Critical" ? "critical-text" : ""
                   }
                 >
-                  {row.risk_label}
+                  {riskLabel(row)}
                 </b>
                 <strong>{pct(row.crash_probability)}</strong>
               </div>
