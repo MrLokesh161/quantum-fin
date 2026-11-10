@@ -1,6 +1,10 @@
-event_name,event_type,start_date,peak_date,end_date,description
-2008 Global Financial Crisis,market crash,2008-09-01,2008-09-15,2009-03-09,Global equity-market stress period.
-COVID-19 Market Crash,market crash,2020-02-19,2020-03-16,2020-03-23,Rapid pandemic-related equity selloff.
-Terra-Luna Collapse,crypto collapse,2022-05-01,2022-05-12,2022-05-31,Crypto-market stress event; not equivalent to an equity crash.
-FTX Collapse,crypto institutional failure,2022-11-01,2022-11-11,2022-11-30,Crypto institutional failure; not assumed causal for equity markets.
-Silicon Valley Bank Failure,institutional failure,2023-03-01,2023-03-10,2023-03-31,Institutional banking stress event.
+event_name,event_type,start_date,peak_date,end_date,description,source_reference,market_relevance
+Dot-com Bust,market crash,2000-03-24,2002-10-09,2002-10-09,"Broad S&P 500 decline from the March 2000 peak through the October 2002 closing low.",https://fred.stlouisfed.org/series/SP500,broad_market_crash
+2008 Global Financial Crisis,market crash,2008-09-01,2008-09-15,2009-03-09,"Global equity-market stress period; September 15 marks the Lehman bankruptcy filing and March 9 the S&P 500 closing trough used as the event end.",https://www.federalreservehistory.org/essays/subprime-mortgage-crisis; https://fred.stlouisfed.org/series/SP500,broad_market_crash
+2011 US Debt-Ceiling Market Stress,market stress,2011-07-22,2011-08-08,2011-10-03,"Broad equity-market stress during the US debt-ceiling dispute and sovereign-credit downgrade; the S&P 500 reached a closing low in October.",https://fred.stlouisfed.org/series/SP500,broad_market_crash
+2018 Fourth-Quarter Selloff,market crash,2018-09-20,2018-12-24,2018-12-24,"Broad S&P 500 decline from the September 2018 closing high to the December 24 closing low.",https://fred.stlouisfed.org/series/SP500,broad_market_crash
+COVID-19 Market Crash,market crash,2020-02-19,2020-03-23,2020-03-23,"S&P 500 drawdown period from its February 2020 closing high to the March 23 closing low.",https://fred.stlouisfed.org/series/SP500; https://www.federalreservehistory.org/essays/covid-19-pandemic,broad_market_crash
+2022 S&P 500 Bear Market,market crash,2022-01-03,2022-10-12,2022-10-12,"Broad S&P 500 decline from the January 2022 closing high to the October 2022 closing low.",https://fred.stlouisfed.org/series/SP500,broad_market_crash
+Terra-Luna Collapse,crypto collapse,2022-05-07,2022-05-12,2022-05-31,"UST de-pegging and LUNA collapse; documented as crypto stress, not labeled as an S&P 500 crash.",https://www.sec.gov/newsroom/press-releases/2023-32,crypto_stress
+FTX Collapse,crypto institutional failure,2022-11-08,2022-11-11,2022-11-30,"FTX liquidity crisis and bankruptcy filing; documented as crypto institutional stress, not an equivalent broad-market crash.",https://www.sec.gov/newsroom/press-releases/2022-219,crypto_stress
+Silicon Valley Bank Failure,institutional failure,2023-03-10,2023-03-10,2023-03-12,"California Department of Financial Protection and Innovation closed SVB on March 10; the FDIC was appointed receiver.",https://www.fdic.gov/news/press-releases/2023/pr23016.html,institution_specific

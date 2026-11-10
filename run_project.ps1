@@ -6,22 +6,11 @@ $venvPython = Join-Path $ProjectRoot 'env\Scripts\python.exe'
 if (-not (Test-Path $venvPython)) {
     throw 'The project is not set up yet. Run .\setup.ps1 first.'
 }
-if (-not (Get-Command npm.cmd -ErrorAction SilentlyContinue)) {
-    throw 'Node.js and npm are required. Install Node.js, then run .\setup.ps1.'
+if (-not (Test-Path (Join-Path $ProjectRoot 'frontend\dist\index.html'))) {
+    throw 'The frontend has not been built. Run npm.cmd install and npm.cmd run build in frontend\ once.'
 }
 
-Write-Host '1/4 Refreshing daily market data...' -ForegroundColor Cyan
-& $venvPython dataset.py
-
-Write-Host '2/4 Training models and generating outputs...' -ForegroundColor Cyan
-& $venvPython main.py
-
-Write-Host '3/4 Building the frontend...' -ForegroundColor Cyan
-Push-Location frontend
-& npm.cmd run build
-Pop-Location
-
-Write-Host '4/4 Starting QETI...' -ForegroundColor Cyan
+Write-Host 'Starting the QETI backend and serving the frontend...' -ForegroundColor Cyan
 Write-Host 'Open http://127.0.0.1:8000 in your browser.' -ForegroundColor Green
 Write-Host 'Press Ctrl+C to stop the server.' -ForegroundColor Yellow
 & $venvPython -m uvicorn backend.app:app --host 127.0.0.1 --port 8000

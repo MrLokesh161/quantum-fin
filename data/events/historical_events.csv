@@ -1,6 +1,10 @@
-event_name,event_type,start_date,crisis_date,end_date
-2008 Global Financial Crisis,market crash,2008-09-01,2008-09-15,2009-03-09
-COVID-19 Market Crash,market crash,2020-02-19,2020-03-16,2020-03-23
-Terra-Luna Collapse,crypto collapse,2022-05-01,2022-05-12,2022-05-31
-FTX Collapse,crypto institutional failure,2022-11-01,2022-11-11,2022-11-30
-Silicon Valley Bank Failure,institutional failure,2023-03-01,2023-03-10,2023-03-31
+event_name,event_type,start_date,crisis_date,end_date,source_reference,market_relevance
+Dot-com Bust,market crash,2000-03-24,2002-10-09,2002-10-09,https://fred.stlouisfed.org/series/SP500,broad_market_crash
+2008 Global Financial Crisis,market crash,2008-09-01,2008-09-15,2009-03-09,https://www.federalreservehistory.org/essays/subprime-mortgage-crisis,broad_market_crash
+2011 US Debt-Ceiling Market Stress,market stress,2011-07-22,2011-08-08,2011-10-03,https://fred.stlouisfed.org/series/SP500,broad_market_crash
+2018 Fourth-Quarter Selloff,market crash,2018-09-20,2018-12-24,2018-12-24,https://fred.stlouisfed.org/series/SP500,broad_market_crash
+COVID-19 Market Crash,market crash,2020-02-19,2020-03-23,2020-03-23,https://fred.stlouisfed.org/series/SP500,broad_market_crash
+2022 S&P 500 Bear Market,market crash,2022-01-03,2022-10-12,2022-10-12,https://fred.stlouisfed.org/series/SP500,broad_market_crash
+Terra-Luna Collapse,crypto collapse,2022-05-07,2022-05-12,2022-05-31,https://www.sec.gov/newsroom/press-releases/2023-32,crypto_stress
+FTX Collapse,crypto institutional failure,2022-11-08,2022-11-11,2022-11-30,https://www.sec.gov/newsroom/press-releases/2022-219,crypto_stress
+Silicon Valley Bank Failure,institutional failure,2023-03-10,2023-03-10,2023-03-12,https://www.fdic.gov/news/press-releases/2023/pr23016.html,institution_specific

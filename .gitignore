@@ -18,6 +18,7 @@ visualizations/*
 
 # Local data downloads and temporary run files
 data/raw/
+data/*.sqlite3
 *.log
 
 # Python tooling and local configuration
