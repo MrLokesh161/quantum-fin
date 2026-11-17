@@ -147,10 +147,15 @@ class VQCClassifier:
                 self._apply_cnot(state, qubit, qubit + 1)
 
         probabilities = np.abs(state) ** 2
-        measured_bit = 1 << 0
-        bit_zero = np.arange(n_states)[(np.arange(n_states) & measured_bit) == 0]
-        bit_one = bit_zero | measured_bit
-        expectation = probabilities[:, bit_zero].sum(axis=1) - probabilities[:, bit_one].sum(axis=1)
+        basis_states = np.arange(n_states)
+        expectation = np.zeros(len(encoded), dtype=float)
+        for qubit in range(self.n_qubits_):
+            measured_one = (basis_states & (1 << qubit)) != 0
+            expectation += (
+                probabilities[:, ~measured_one].sum(axis=1)
+                - probabilities[:, measured_one].sum(axis=1)
+            )
+        expectation /= self.n_qubits_
         return np.clip((1.0 - expectation) / 2.0, 0.0, 1.0)
 
     @staticmethod

@@ -136,6 +136,20 @@ class PhaseTwoPipelineTests(unittest.TestCase):
         self.assertTrue(((probabilities >= 0.0) & (probabilities <= 1.0)).all())
         self.assertEqual(model.n_qubits_, 3)
 
+    def test_vqc_readout_responds_to_every_encoded_qubit(self):
+        model = VQCClassifier(n_qubits=2, n_layers=1)
+        model.n_qubits_ = 2
+        model.n_layers = 1
+        parameters = np.zeros((1, 2, 2))
+        first_feature = np.asarray([[0.0, 0.0], [1.0, 0.0]])
+        second_feature = np.asarray([[0.0, 0.0], [0.0, 1.0]])
+
+        first_probabilities = model._probability(first_feature, parameters)
+        second_probabilities = model._probability(second_feature, parameters)
+
+        self.assertGreater(np.ptp(first_probabilities), 0.1)
+        self.assertGreater(np.ptp(second_probabilities), 0.1)
+
     def test_refresh_and_train_runs_only_when_requested(self):
         class ImmediateThread:
             def __init__(self, target, args, daemon):
